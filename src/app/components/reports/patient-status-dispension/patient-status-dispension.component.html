@@ -1,0 +1,125 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1" (click)="filterChange()">
+            <a ngbNavLink>Registration Date Details</a>
+            <ng-template ngbNavContent>
+                
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2" (click)="filterChange()">
+            <a ngbNavLink>Art Initiation Date Deatils</a>
+            <ng-template ngbNavContent>
+            
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3" (click)="filterChange()">
+                <a ngbNavLink>Status Date Deatils</a>
+                <ng-template ngbNavContent>
+                    
+                </ng-template>
+            </li>
+    </ul>
+    <section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+            <div class="filter_t"> Filter </div>
+            <div class="row">
+                <aside class="form-group col-sm-3">
+                    <label for="district">Status</label>
+                    <ng-select [items]="statusFilterValues" bindLabel="name" placeholder="Select Status"
+                        appendTo="body" [(ngModel)]="selectedStatus" (ngModelChange)="filterChange()"
+                         [disabled]="loader">
+                    </ng-select>
+                </aside>
+                <aside class="form-group col-sm-3">
+                    <label for="district">Category</label>
+                    <ng-select [items]="categoryFilterValues" bindLabel="name" placeholder="Select Category"
+                        appendTo="body" [(ngModel)]="selectedCategory" (ngModelChange)="filterChange()"
+                         [disabled]="loader">
+                    </ng-select>
+                </aside>
+                <aside class="form-group col-sm-3">
+                    <label for="registrationStartDate"  class="required">Start Date</label>
+                    <input type="text" bsDatepicker class="form-control" [(ngModel)]="startDate" (ngModelChange)="filterChange()"
+                        [disabled]="loader">
+                </aside>
+                <aside class="form-group col-sm-3">
+                    <label for="registrationEndDate"  class="required">End Date</label>
+                    <input type="text" bsDatepicker class="form-control" [(ngModel)]="endDate" (ngModelChange)="filterChange()"
+                        [disabled]="loader">
+                </aside>
+            </div>
+        </section>
+
+    <section class="container-fluid fifteenm-t clearfix">
+            <div class="row fifteenm_tb">
+                <div class="col-sm-12 zerop_r " style="text-align: right">
+                   
+                    <button class="btn btn-success button_c" (click)="download('csv')"
+                        [disabled]="!startDate || !endDate"> CSV </button>
+                    <button class="btn btn-success  button_c" (click)="download('xlsx')"
+                        [disabled]="!startDate || !endDate"> XLSX </button>
+                    <button class="btn btn-success  button_c" (click)="download('xls')"
+                        [disabled]="!startDate || !endDate"> XLS </button>
+                </div>
+            </div>
+        </section>
+    <section class="container-fluid fifteenm-t">
+        <div class="" *ngIf="loader">
+          <div class="spinner">
+            <img src="/static/assets/loading.gif"></div>
+        </div>
+        <div class="table-c row">
+          <table class="table table-striped table-bordered table-hover soch-tables">
+            <thead>
+              <tr>
+                  <th>Patient Name</th>
+                  <th>Pre ART No</th>
+                  <th>Art No</th>
+                  <th>Status</th>
+                  <th>Last Visit Date</th>
+                  <th>Next Visit Date</th>
+                  <th>Last Status Update</th>
+                  <th>Contact No</th>
+                    <th>Address</th>
+                    <th>Care Giver's Name</th>
+                    <th>Care Giver's Contact No</th>
+                    <th>Last Adherence Counsellor</th>
+                    <th>Last Adherence Pharamacist</th>
+                    <th>Registration Date</th>
+                    <th>Art Initiation Date</th>
+                  </tr>
+           
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of rawSummaryData|paginate: { totalItems: rawSummaryData?.length,
+                itemsPerPage: 30,
+                currentPage: page}">
+                  <td>{{row[0]}}</td>
+                  <td>{{row[1]}}</td>
+                  <td>{{row[2]}}</td>
+                  <td>{{row[3]}}</td>
+                  <td>{{row[4]}}</td>
+                  <td>{{row[5]}}</td>
+                  <td>{{row[6]}}</td>
+                  <td>{{row[7]}}</td>
+                  <td>{{row[8]}}</td>
+                  <td>{{row[9]}}</td>
+                  <td>{{row[10]}}</td>
+                  <td>{{row[11]}}</td>
+                  <td>{{row[12]}}</td>
+                  <td>{{row[13]}}</td>
+                  <td>{{row[14]}}</td>
+                </tr>
+            </tbody>
+            </table>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+    </section>
+
+    <section>
+    </section>
+    <section class="container-fluid fifteenm-t">
+        <div class="" *ngIf="loader">
+            <div class="spinner">
+                <img src="/static/assets/loading.gif">
+            </div>
+        </div>
+    </section>

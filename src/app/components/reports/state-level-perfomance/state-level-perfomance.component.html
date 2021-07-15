@@ -1,0 +1,99 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+        <a ngbNavLink>Summary</a>
+        <ng-template ngbNavContent>
+            <section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+                <div class="filter_t"> Filter </div>
+                <div class="row">
+                    <aside class="form-group col-sm-3">
+                        <label for="district">District</label>
+                        <ng-select [items]="districtFilterValues" bindLabel="name" placeholder="Select District"
+                            appendTo="body" [(ngModel)]="selectedDistrict" (ngModelChange)="filterChange()"
+                             [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                    <aside class="form-group col-sm-3">
+                        <label for="facility">Facility</label>
+                        <ng-select [items]="facilityFilterValues" bindLabel="name" placeholder="Select Facility"
+                            appendTo="body" [(ngModel)]="selectedFacility" (ngModelChange)="filterChange()"
+                             [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                    <aside class="form-group col-sm-3">
+                        <label for="district" class="required">Year</label>
+                        <ng-select [items]="yearFilterValues" bindLabel="name" placeholder="Select Year" appendTo="body"
+                            [(ngModel)]="selectedyear" (ngModelChange)="filterChange()" 
+                            [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                    <aside class="form-group col-sm-3">
+                        <label for="productName" class="required">Month</label>
+                        <ng-select [items]="monthFilterValues" bindValue="key" bindLabel="value"
+                            placeholder="Select Month" [(ngModel)]="selectedMonth" (ngModelChange)="filterChange()"
+                            appendTo="body"  [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                </div>
+            </section>
+        </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+        <a ngbNavLink>Analysis</a>
+        <ng-template ngbNavContent>
+            <section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+                <div class="filter_t"> Filter </div>
+                <div class="row">
+                    <aside class="form-group col-sm-3">
+                        <label for="district">District</label>
+                        <ng-select [items]="districtFilterValuesAnalysis" bindLabel="name" placeholder="Select District"
+                            appendTo="body" [(ngModel)]="selectedDistrict" (ngModelChange)="filterChange()"
+                             [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                    <aside class="form-group col-sm-3">
+                        <label for="facility">Facility</label>
+                        <ng-select [items]="facilityFilterValues" bindLabel="name" placeholder="Select Facility"
+                            appendTo="body" [(ngModel)]="selectedFacility" (ngModelChange)="filterChange()"
+                             [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                    <aside class="form-group col-sm-3">
+                        <label for="district" class="required">Year</label>
+                        <ng-select [items]="yearFilterValues" bindLabel="name" placeholder="Select Year" appendTo="body"
+                            [(ngModel)]="selectedyear" (ngModelChange)="filterChange()" 
+                            [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                    <aside class="form-group col-sm-3 ">
+                        <label for="productName" class="required">Month</label>
+                        <ng-select [items]="monthFilterValues" bindValue="key" bindLabel="value"
+                            placeholder="Select Month" [(ngModel)]="selectedMonth" (ngModelChange)="filterChange()"
+                            appendTo="body"  [disabled]="loader">
+                        </ng-select>
+                    </aside>
+                </div>
+            </section>
+        </ng-template>
+    </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+<section class="container-fluid fifteenm-t clearfix">
+    <div class="row fifteenm_tb">
+      
+        <div class="col-sm-12 zerop_r " style="text-align: center">
+            <span style="font-weight: bold">Download</span><br><br>
+            <button class="btn btn-success button_c" (click)="download('csv')" [disabled]="!selectedMonth || !selectedyear"> CSV </button>
+            <button class="btn btn-success  button_c" (click)="download('xlsx')" [disabled]="!selectedMonth || !selectedyear"> XLSX </button>
+            <button class="btn btn-success  button_c" (click)="download('xls')" [disabled]="!selectedMonth || !selectedyear"> XLS </button>
+        </div>
+    </div>
+</section>
+<section>
+</section>
+<section class="container-fluid fifteenm-t">
+    <div class="" *ngIf="loader">
+        <div class="spinner">
+            <img src="/static/assets/loading.gif">
+        </div>
+    </div>
+</section>

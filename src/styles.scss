@@ -1,0 +1,233 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+$anchor_clr :#00a699;
+$anchor_hvr :#000;
+$body_bg: #fff;
+$body_clr : #000;
+$lgrey_bg: #f5f5f5;
+$btn_bg:#1792b5;
+$btn_hvr:#1792b5;
+$grey: #ccc;
+
+body{
+    background:$body_bg;
+    color: $body_clr;
+    font-family:"Helvetica", arial;
+    height: auto !important;
+}
+
+a{
+    color:$anchor_clr;
+}
+
+a:hover,
+a:focus {
+    color: $anchor_hvr;
+}
+
+h2{
+    font-weight:400;
+}
+
+.fifteenm_tb{
+    margin-bottom:15px;
+    margin-top:15px;
+}
+
+.tab-content{
+    background:#fff;
+    padding:15px;
+}
+
+/* table */
+.table-c  {
+    thead th{
+        background:#eaf0f7;
+        border-bottom:1px solid #cfd8dc;
+    }
+
+    tr:nth-child(odd) {background: #f7fff0}
+    tr:nth-child(even) {background: #FFF}
+
+    .table>thead>tr>th {
+        border-bottom:1px solid #cfd8dc;
+        vertical-align:top;
+        font-weight:normal;
+    }
+    td , th {
+        font-size:.9rem;
+        padding:4px;
+    }
+}
+
+/* */
+
+label{font-weight:normal}
+.zerop_l{padding-left:0;}
+.zerop_r{padding-right:0;}
+.fivem-r{margin-right:5px}
+.fifteenm-t{margin-top:15px}
+.fifteenp-t{padding-top:15px}
+.fifteenp-b{padding-bottom:15px}
+.float-left{float:left}
+.float-right{float:right}
+.white_bb{border-bottom:1px solid #fff}
+h1{font-size:2rem}
+
+.date-form.form-control:disabled, 
+.date-form.form-control[readonly]{
+    text-align:center;
+    background-color:#b3b3b3;
+    color:#fff ;
+    opacity:1;
+}
+
+.coloun::after { 
+  content: " : ";
+  display:inline-block;
+  text-align:right
+}
+
+.mainhead{
+	margin-bottom:40px
+}
+
+a.button_c,
+.button_c{
+	padding:6px 12px;
+	border-radius:4px;
+    margin-left:4px;
+    background: $btn_bg;
+    border:1px solid  $btn_bg;
+    color:#fff;
+    font-size:.9rem;
+    line-height:1;
+	}
+	
+a.button_c:hover,
+.button_c:hover { 
+    border:1px solid  $btn_bg;
+    text-decoration:none;
+}
+
+.filterc{
+	background:#fafafa;
+	border:1px solid #e4e4e4;
+	border-radius:4px;
+    padding:20px 15px 15px 15px;
+    position:relative;
+}
+
+.filter_t{
+	content: "Filters";
+    position: absolute;
+    top: -17px;
+    display: inline-block;
+    background: #edf0e1;
+    padding: 2px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #e4e4e4;
+}
+
+/* */
+
+.pu_bg{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:9998;
+    background:#000;
+    opacity:.3;
+}
+
+.date_pu{
+    width:400px;
+    min-height:150px;
+    position:absolute;
+    top:100px;
+    left:50%;
+    margin-left:-200px;
+    background:#fff;
+    border:1px solid #ccc;
+    box-shadow: 5px 10px 18px #888;
+    z-index:9999;
+    padding:15px;
+}
+
+.form-check{
+    padding-bottom:10px
+}
+
+.sml_input .form-control{
+    width:100px;
+    margin-right:7px;
+}
+.spinner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 47%;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 9999;
+    text-align: center;
+    height: 100%;
+}
+.load-more-button{
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+}
+.load-more-button button{
+    width:200px;
+}
+.soch-tables tr,.soch-tables td{
+    text-align: center;
+}
+.btn-success {
+    color: #fff;
+    background-color: #1792b5 !important;
+    border-color: #1792b5 !important;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #fff !important;
+    background-color: #1792b5 !important;
+    border-color: #dee2e6 #dee2e6 #fff !important;
+}
+a {
+    color: #212529 !important; 
+    text-decoration: none;
+    background-color: transparent;
+}
+label.required:after{
+    color: red;
+    content: "*";
+    font-size:21px;
+    position: absolute;
+    margin-right: -10px;
+ }
+ .theme-green .bs-datepicker-head {
+    background-color: #69b8cf !important;
+}
+.theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*="select-"]:after, .theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+    background-color: #69b8cf  !important;
+}
+.theme-green .bs-datepicker-body table td.week span {
+    color: #69b8cf  !important;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

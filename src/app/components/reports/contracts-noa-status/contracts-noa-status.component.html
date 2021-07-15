@@ -1,0 +1,162 @@
+<section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+  <div class="filter_t"> Filter </div>
+  <div class="row">
+    <aside class="form-group col-sm-4">
+      <label for="supplier">Supplier</label>
+      <ng-select [items]="supplierFilterValues" bindLabel="name" placeholder="Select State" appendTo="body"
+        [(ngModel)]="selectedSupplier" (ngModelChange)="filterChange()" multiple="true" [disabled]="loader">
+      </ng-select>
+    </aside>
+
+    <aside class="form-group col-sm-4">
+      <label for="indentNumber">Indent Number</label>
+
+      <ng-select [items]="indentNumberFilterValues" bindLabel="name" placeholder="Select Indent Number" appendTo="body"
+        [(ngModel)]="selectedIndentNumber" (ngModelChange)="filterChange()" multiple="true" [disabled]="loader">
+      </ng-select>
+    </aside>
+    <aside class="form-group col-sm-4">
+      <label for="noa">NOA</label>
+
+      <ng-select [items]="noaFilterValues" bindLabel="name" placeholder="Select NOA" appendTo="body"
+        [(ngModel)]="selectedNOA" (ngModelChange)="filterChange()" multiple="true" [disabled]="loader">
+      </ng-select>
+    </aside>
+    <aside class="form-group col-sm-4">
+      <label for="productName">Product Name</label>
+      <ng-select [items]="productFilterValues" bindLabel="name" placeholder="Select Product"
+        [(ngModel)]="selectedProduct" (ngModelChange)="filterChange()" appendTo="body" multiple="true"
+        [disabled]="loader">
+      </ng-select>
+    </aside>
+
+    <aside class="form-group col-sm-4">
+      <label for="schedule">Schedule</label>
+      <ng-select [items]="scheduleFilterValues" bindLabel="name" placeholder="Select Schedule"
+        [(ngModel)]="selectedSchedule" (ngModelChange)="filterChange()" appendTo="body" multiple="true"
+        [disabled]="loader">
+      </ng-select>
+    </aside>
+  </div>
+</section>
+
+<section class="container-fluid fifteenm-t clearfix">
+  <div class="row fifteenm_tb">
+    <div class="col-sm-4 zerop_l">
+    </div>
+    <div class="col-sm-8 zerop_r ">
+      <button class="btn btn-success float-right button_c" (click)="download('csv')"> CSV </button>
+      <button class="btn btn-success float-right button_c" (click)="download('xlsx')"> XLSX </button>
+      <button class="btn btn-success float-right button_c" (click)="download('xls')"> XLS </button>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid fifteenm-t">
+  <div class="" *ngIf="loader">
+    <div class="spinner">
+      <img src="/static/assets/loading.gif">
+    </div>
+  </div>
+  <div class="table-c row">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th style="text-align: center;" rowspan="2">SACS Warehouse</th>
+          <th style="text-align: center;" colspan="4">Lot 1</th>
+          <th style="text-align: center;" colspan="4">Lot 2</th>
+          <th style="text-align: center;" colspan="4">Lot 3</th>
+          <th style="text-align: center;" colspan="4">Lot 4</th>
+          <th style="text-align: center;" colspan="4">Lot 5</th>
+          <th style="text-align: center;" colspan="4">Lot 6</th>
+          <th style="text-align: center;" colspan="4">Lot 7</th>
+          <th style="text-align: center;" colspan="4">Lot 8</th>
+          <th style="text-align: center;" colspan="4">Total</th>
+        </tr>
+        <tr>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+          <th style="text-align: center;">NOA</th>
+          <th style="text-align: center;">Dispatch</th>
+          <th style="text-align: center;">Received</th>
+          <th style="text-align: center;">Balance Qty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of contractsNOAData|paginate: { totalItems: itemCount,
+          itemsPerPage: 10,
+          id: 'listing_pagination1',
+          currentPage: pageNumber}">
+          <td>{{row[5] }}</td>
+          <td align="right">{{row[8] | number }}</td>
+          <td align="right">{{row[9] | number }}</td>
+          <td align="right">{{row[10] | number }}</td>
+          <td align="right">{{row[11] | number }}</td>
+          <td align="right">{{row[12] | number }}</td>
+          <td align="right">{{row[13] | number }}</td>
+          <td align="right">{{row[14] | number }}</td>
+          <td align="right">{{row[15] | number }}</td>
+          <td align="right">{{row[16] | number }}</td>
+          <td align="right">{{row[17] | number }}</td>
+          <td align="right">{{row[18] | number }}</td>
+          <td align="right">{{row[19] | number }}</td>
+          <td align="right">{{row[20] | number }}</td>
+          <td align="right">{{row[21] | number }}</td>
+          <td align="right">{{row[22] | number }}</td>
+          <td align="right">{{row[23] | number }}</td>
+          <td align="right">{{row[24] | number }}</td>
+          <td align="right">{{row[25] | number }}</td>
+          <td align="right">{{row[26] | number }}</td>
+          <td align="right">{{row[27] | number }}</td>
+          <td align="right">{{row[28] | number }}</td>
+          <td align="right">{{row[29] | number }}</td>
+          <td align="right">{{row[30] | number }}</td>
+          <td align="right">{{row[31] | number }}</td>
+          <td align="right">{{row[32] | number }}</td>
+          <td align="right">{{row[33] | number }}</td>
+          <td align="right">{{row[34] | number }}</td>
+          <td align="right">{{row[35] | number }}</td>
+          <td align="right">{{row[36] | number }}</td>
+          <td align="right">{{row[37] | number }}</td>
+          <td align="right">{{row[38] | number }}</td>
+          <td align="right">{{row[39] | number }}</td>
+          <td align="right">{{row[40] | number }}</td>
+          <td align="right">{{row[41] | number }}</td>
+          <td align="right">{{row[42] | number }}</td>
+          <td align="right">{{row[43] | number }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls id="listing_pagination1"   (pageChange)="pageChange($event)"></pagination-controls>
+  </div>
+</section>

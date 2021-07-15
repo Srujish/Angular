@@ -1,0 +1,178 @@
+<section class="tab_ec">
+   <ngb-tabset [destroyOnHide]="false">
+      <!-- tab one -->
+   <ngb-tab title="Dashboard">
+      <ng-template ngbTabContent>
+
+      <div class="row fifteenm_tb">
+         <div class="col-md-8">
+            <h2>Dashboards</h2>
+         </div>
+         <div class="col-md-4">
+            <input placeholder="Search" type="text" class="form-control input-sm" value="" >
+         </div>
+      </div>
+         
+      <table class="table table-hover">
+         <thead>
+            <tr>
+               <th colspan="1" title="Toggle SortBy" data-test="sort-header">Dashboard  <i class=" fa fa-sort"></i></th>
+               <th colspan="1" title="Toggle SortBy" data-test="sort-header">NACO</th>
+               <th colspan="1" title="Toggle SortBy" data-test="sort-header">SACS</th>
+               <th colspan="1" title="Toggle SortBy" data-test="sort-header">Facility</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/patient_dispensation_summary">Patient Dispensation Summary</a>
+                  </span>
+               </td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>artmedicalofficer</td>
+            </tr>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/contracts_noa_status">Contracts NOA Status</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>N/A</td>
+               <td>rusan</td>
+            </tr>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/regimen_summary-facility">Regimen Summary - Facility</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>ashishduttrv</td>
+               <td>tnart47 | lokesh</td>
+            </tr>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/regimen_summary-state">Regimen Summary - State</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>ashishduttrv | upsacs</td>
+               <td>N/A</td>
+            </tr>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/stock_summary-facility">Stock Summary - Facility</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>absacs</td>
+               <td>tnart48 | fert</td>
+            </tr>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/ictc_usage_report">ICTC Usage Report</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>N/A</td>
+               <td>CGGBD001</td>
+            </tr>
+              <tr>
+               <td>
+                  <span>
+                     <a href="/facility_stock_ledger">Facility stock ledger</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>N/A</td>
+               <td>CGGBD001</td>
+            </tr>
+              <tr>
+               <td>
+                  <span>
+                     <a href="/state_stock_ledger">State stock ledger</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>N/A</td>
+               <td>CGGBD001</td>
+            </tr>
+            <tr>
+               <td>
+                  <span>
+                     <a href="/viral_load_report">Monthly viral load report</a>
+                  </span>
+               </td>
+               <td>nacoadmin</td>
+               <td>N/A</td>
+               <td>CGGBD001</td>
+            </tr>
+            <tr>
+                  <td>
+                     <span>
+                        <a href="/state-level-perfomance">State Level Perfomance</a>
+                     </span>
+                  </td>
+                  <td>nacoadmin</td>
+                  <td>N/A</td>
+                  <td>CGGBD001</td>
+               </tr>
+               <tr>
+                     <td>
+                        <span>
+                           <a href="/naco-level-perfomance">Naco Level Perfomance</a>
+                        </span>
+                     </td>
+                     <td>nacoadmin</td>
+                     <td>N/A</td>
+                     <td>CGGBD001</td>
+                  </tr>
+                   <tr>
+                     <td>
+                        <span>
+                           <a href="/expected-patients">Expected Partients</a>
+                        </span>
+                     </td>
+                     <td>nacoadmin</td>
+                     <td>N/A</td>
+                     <td>CGGBD001</td>
+                  </tr>  
+         </tbody>
+      </table>
+      
+      </ng-template>
+   </ngb-tab>
+   <!-- tab second -->
+   <ngb-tab>
+      <ng-template ngbTabTitle>Recently Viewed</ng-template>
+      <ng-template ngbTabContent>
+         <div class="fifteenm_tb">
+            <h2>Recently Viewed</h2>
+         </div>
+         <section>
+            Recently Viewed page content
+         </section>
+      </ng-template>
+   </ngb-tab>
+   <!-- tab third -->
+   <ngb-tab>
+      <ng-template ngbTabTitle>Favorites</ng-template>
+      <ng-template ngbTabContent>
+         
+         <div class="fifteentb">
+            <h2>Favorites</h2>
+         </div>
+         <section>
+            Recently Viewed page content
+         </section>
+
+      </ng-template>
+   </ngb-tab>
+   </ngb-tabset>
+</section>

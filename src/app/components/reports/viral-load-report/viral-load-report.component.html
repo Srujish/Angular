@@ -1,0 +1,201 @@
+<section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+    <div class="filter_t"> Filter </div>
+    <div class="row">
+        <aside class="form-group col-sm-6">
+            <label for="state">Laboratory</label>
+            <ng-select [items]="laboratoryFilterValues" bindLabel="name" placeholder="Select Laboratory" appendTo="body"
+                [(ngModel)]="selectedLaboratory" (ngModelChange)="filterChange()" [disabled]="loader">
+            </ng-select>
+        </aside>
+
+        <aside class="form-group col-sm-3">
+            <label for="district">Year</label>
+            <ng-select [items]="yearFilterValues" bindLabel="name" placeholder="Select Year" appendTo="body"
+                [(ngModel)]="selectedyear" (ngModelChange)="filterChange()" [disabled]="loader">
+            </ng-select>
+        </aside>
+        <aside class="form-group col-sm-3">
+            <label for="productName">Month</label>
+            <ng-select [items]="monthFilterValues" bindValue="key" bindLabel="value" placeholder="Select Month"
+                [(ngModel)]="selectedMonth" (ngModelChange)="filterChange()" appendTo="body" [disabled]="loader">
+            </ng-select>
+        </aside>
+    </div>
+</section>
+<section class="container-fluid fifteenm-t clearfix">
+    <div class="row fifteenm_tb">
+        <div class="col-sm-4 zerop_l">
+        </div>
+        <div class="col-sm-8 zerop_r ">
+            <button class="btn btn-success float-right button_c" (click)="download('csv')"> CSV </button>
+            <button class="btn btn-success float-right button_c" (click)="download('xlsx')"> XLSX </button>
+            <button class="btn btn-success float-right button_c" (click)="download('xls')"> XLS </button>
+        </div>
+    </div>
+</section>
+<section>
+</section>
+<div class="" *ngIf="loader">
+    <div class="spinner">
+        <img src="/static/assets/loading.gif">
+    </div>
+</div>
+<section class="container-fluid fifteenm-t">
+
+    <div *ngIf="rawlaboratoryData?.length>0">
+        <div class="table-c row">
+            <table class="table table-striped table-bordered table-hover table-viral">
+                <thead>
+                    <tr>
+                        <th colspan="12" class="table-th-color">Laboratory Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="viralLoad-table">VL Lab Name</td>
+                        <td colspan="6">{{rawlaboratoryData[1]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">VL Lab Code</td>
+                        <td colspan="6">{{rawlaboratoryData[2]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Active Since</td>
+                        <td colspan="6">{{rawlaboratoryData[3]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Lab In Charge</td>
+                        <td colspan="6">{{rawlaboratoryData[4]}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">No of Lab Technicians</td>
+                        <td colspan="6">{{rawlaboratoryData[6]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Name of Lab Technicians</td>
+                        <td colspan="6">{{technicians}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">No of Patients Tagged</td>
+                        <td colspan="8">{{rawlaboratoryData[7]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Machine Type</td>
+                        <td colspan="6">{{rawlaboratoryData[8]}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-c row">
+            <table class="table table-viral table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="12" class="table-th-color">Reporting Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="viralLoad-table">Reporting Period</td>
+                        <td colspan="6">{{reportPeriod?reportPeriod:''}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">No. of Days</td>
+                        <td colspan="6">{{reportDays}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-c row">
+            <table class="table table-viral table-striped table-bordered">
+
+                <thead>
+                    <th colspan="12" class="table-th-color">Test Details</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="viralLoad-table">Number of Specimen Received</td>
+                        <td colspan="6">{{specimenNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Number of samples tested</td>
+                        <td colspan="6">{{testNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-c row">
+
+
+
+            <table class="table table-viral table-striped table-bordered table-hover">
+
+                <thead>
+                    <tr>
+                        <th colspan="9" class="text-center">
+                            <h6 class="text-center"> VIRAL LOAD RESULTS (IN NUMBERS) </h6><br>
+                            <p> Number of samples with invalid results: {{invalidResult}}</p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">Report Category</th>
+                        <th colspan="3" class="text-center">Gender (Nos. after Invalid)</th>
+                        <th colspan="4" class="text-center">Age Category (Nos. after Invalid)</th>
+                        <th rowspan="2" class="text-center">Total</th>
+                    </tr>
+                    <tr class="text-center">
+                        <th class="text-center">Male</th>
+                        <th class="text-center">Female</th>
+                        <th class="text-center">TS/TG</th>
+                        <th class="text-center"> &lt;14 </th>
+                        <th class="text-center">15-29</th>
+                        <th class="text-center">30-49</th>
+                        <th class="text-center"> &gt;50 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of viralLoadResultData">
+                        <td *ngFor="let rowItem of row">{{rowItem}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+        <div class="table-c row">
+            <table class="table table-viral table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="12" class="table-th-color">Sample Rejected Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="viralLoad-table">No of Samples Rejected</td>
+                        <td colspan="6">{{reasonNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Reasons for Rejection</td>
+                        <td colspan="6">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-th-color">Reason</th>
+                                        <th class="table-th-color">No of Samples</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of rejectionReason">
+                                        <td>{{item.reason}}</td>
+                                        <td>{{item.count}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

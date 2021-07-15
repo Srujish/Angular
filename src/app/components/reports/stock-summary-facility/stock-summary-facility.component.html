@@ -1,0 +1,115 @@
+
+<section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+    <div class="filter_t"> Filter </div>
+    <div class="row">
+        <aside class="form-group col-sm-6">
+            <label for="state" >State</label>
+            <ng-select [items]="stateFilterValues" bindLabel="name" placeholder="Select State" appendTo="body"
+                [(ngModel)]="selectedState" (ngModelChange)="getFilter();filterChange()" multiple="false" [disabled]="loader">
+            </ng-select>
+        </aside>
+
+        <aside class="form-group col-sm-6">
+            <label for="district" >District</label>
+
+            <ng-select [items]="districtFilterValues" bindLabel="name" placeholder="Select District" appendTo="body"
+                [(ngModel)]="selectedDistrict" (ngModelChange)="getFilter();filterChange()" multiple="false" [disabled]="loader">
+            </ng-select>
+        </aside>
+        <aside class="form-group col-sm-6">
+            <label for="facility" class="required">Facility</label>
+
+            <ng-select [items]="facilityFilterValues" bindLabel="name" placeholder="Select Facility" appendTo="body"
+                [(ngModel)]="selectedFacility" (ngModelChange)="filterChange()" [disabled]="loader">
+            </ng-select>
+        </aside>
+        <aside class="form-group col-sm-6">
+            <label for="facility" >Product</label>
+
+            <ng-select [items]="productFilterValues" bindLabel="name" placeholder="Select Product" appendTo="body"
+                [(ngModel)]="selectedProduct" (ngModelChange)="filterChange()" multiple="false" [disabled]="loader">
+            </ng-select>
+        </aside>
+        <aside class="form-group col-sm-6">
+            <label for="TransactionStartDate" class="required">Start Date</label>
+            <input type="text" bsDatepicker  class="form-control" [(ngModel)]="transactionStartDate" (ngModelChange)="filterChange()"
+                [disabled]="loader">
+        </aside>
+        <aside class="form-group col-sm-6">
+            <label for="TransactionEndDate" class="required">End Date</label>
+            <input type="text" bsDatepicker class="form-control" [(ngModel)]="transactionEndDate" (ngModelChange)="filterChange()"
+                [disabled]="loader">
+           
+        </aside>
+    </div>
+</section>
+<section class="container-fluid fifteenm-t clearfix">
+    <div class="row fifteenm_tb">
+        <div class="col-sm-4 zerop_l">
+        </div>
+        <div class="col-sm-8 zerop_r ">
+            <button class="btn btn-success float-right button_c" (click)="download('csv')" [disabled]="!transactionStartDate || !transactionEndDate || !selectedFacility"> CSV </button>
+            <button class="btn btn-success float-right button_c" (click)="download('xlsx')" [disabled]="!transactionStartDate || !transactionEndDate || !selectedFacility"> XLSX </button>
+            <button class="btn btn-success float-right button_c" (click)="download('xls')" [disabled]="!transactionStartDate || !transactionEndDate || !selectedFacility"> XLS </button>
+        </div>
+    </div>
+</section>
+<section>
+</section>
+<section class="container-fluid fifteenm-t">
+    <div class="" *ngIf="loader">
+        <div class="spinner">
+            <img src="/static/assets/loading.gif"></div>
+    </div>
+    <div class="table-c row" *ngIf="rawStockSummaryData?.length>0">
+        <table class="table table-striped table-bordered table-hover soch-tables">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>District</th>
+                    <th>Facility Type</th>
+                    <th>Facility</th>
+                    <th>Product</th>
+                    <th>Opening Stock at Facility</th>
+                    <th>Opening Stock at Sub Facility</th>
+                    <th>Stock Received During Month From SACS Supplier</th>
+                    <th>Stock Received During Month Through Relocation</th>
+                    <th>Usable Stock Received from Patients And Unreg Sources</th>
+                    <th>Stock Relocated to Other Facilities</th>
+                    <th>Stock Given to Sub Facility</th>
+                    <th>Consumption Stock at Facility</th>
+                    <th>Consumption Stock at Sub Facility</th>
+                    <th>Stock Added</th>
+                    <th>Stock Written Off Expired Stock Missing</th>
+                    <th>Closing Stock at Facility</th>
+                    <th>Closing Stock at Sub Facility</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rawStockSummaryData|paginate: { totalItems: rawStockSummaryData?.length,
+                    itemsPerPage: 5,
+                    currentPage: page}">
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[5]}}</td>
+                    <td>{{row[6]}}</td>
+                    <td>{{row[7]}}</td>
+                    <td>{{row[8]}}</td>
+                    <td>{{row[9]}}</td>
+                    <td>{{row[10]}}</td>
+                    <td>{{row[11]}}</td>
+                    <td>{{row[12]}}</td>
+                    <td>{{row[13]}}</td>
+                    <td>{{row[14]}}</td>
+                    <td>{{row[15]}}</td>
+                    <td>{{row[16]}}</td>
+                    <td>{{row[17]}}</td>
+                    <td>{{row[18]}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls   (pageChange)="page = $event" *ngIf="rawStockSummaryData?.length>5"></pagination-controls>
+    </div>
+</section>

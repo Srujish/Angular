@@ -1,0 +1,95 @@
+<section class="container-fluid filterc rounded fifteenm-t fifteenpc fifteenp-b relative-position">
+  <div class="filter_t"> Filter </div>
+  <div class="row">
+    <aside class="form-group col-sm-4">
+      <label for="state">State</label>
+      <ng-select [items]="stateFilterValues" bindLabel="name" placeholder="Select State" appendTo="body"
+        [(ngModel)]="selectedState" (ngModelChange)="filterChange()" multiple="false" [disabled]="loader">
+      </ng-select>
+    </aside>
+    <aside class="form-group col-sm-4">
+      <label for="district">District</label>
+
+      <ng-select [items]="districtFilterValues" bindLabel="name" placeholder="Select District" appendTo="body"
+        [(ngModel)]="selectedDistrict" (ngModelChange)="filterChange()" multiple="false" [disabled]="loader">
+      </ng-select>
+    </aside>
+    <aside class="form-group col-sm-4">
+      <label for="facility">Facility</label>
+
+      <ng-select [items]="facilityFilterValues" bindLabel="name" placeholder="Select Facility" appendTo="body"
+        [(ngModel)]="selectedFacility" (ngModelChange)="filterChange()" multiple="false" [disabled]="loader">
+      </ng-select>
+    </aside>
+    <aside class="form-group col-sm-6">
+      <label for="productName">Product Name</label>
+
+      <ng-select [items]="productFilterValues" bindLabel="name" placeholder="Select Product"
+        [(ngModel)]="selectedProducts" (ngModelChange)="filterChange()" appendTo="body" multiple="true"
+        [disabled]="loader">
+      </ng-select>
+    </aside>
+    <!--
+        <aside class="form-group col-sm-6">
+            <label for="dispense_date">Dispense Date</label>
+            <input class="form-control date-form" (click)="showDiv.puopen = !showDiv.puopen ; showDiv.puopenbg = !showDiv.puopenbg" type="text" placeholder="Last month" [(ngModel)]="customeDate" readonly>
+        </aside>
+        -->
+    <aside class="form-group col-sm-3">
+      <label for="dispenseStartDate">Dispense Start Date</label>
+      <input type="text" bsDatepicker class="form-control" [(ngModel)]="dispenseStartDate" (ngModelChange)="filterChange()"
+        [disabled]="loader">
+    </aside>
+    <aside class="form-group col-sm-3">
+      <label for="dispenseEndDate">Dispense End Date</label>
+      <input type="text" bsDatepicker class="form-control" [(ngModel)]="dispenseEndDate" (ngModelChange)="filterChange()"
+        [disabled]="loader">
+    </aside>
+
+  </div>
+</section>
+
+<section class="container-fluid fifteenm-t clearfix">
+  <div class="row fifteenm_tb">
+    <div class="col-sm-4 zerop_l">
+    </div>
+    <div class="col-sm-8 zerop_r ">
+      <button class="btn btn-success float-right button_c" (click)="download('csv')"> CSV </button>
+      <button class="btn btn-success float-right button_c" (click)="download('xlsx')"> XLSX </button>
+      <button class="btn btn-success float-right button_c" (click)="download('xls')"> XLS </button>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid fifteenm-t">
+  <div class="" *ngIf="loader">
+    <div class="spinner">
+      <img src="/static/assets/loading.gif"></div>
+  </div>
+  <div class="table-c row">
+    <table class="table-striped table-bordered table-hover" *ngIf="dispensationTable?.length > 0">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th colspan="2" *ngFor="let dispenseProduct of dispensationProducts">{{dispenseProduct}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of dispensationTable|paginate: { totalItems: dispensationTable?.length,
+          itemsPerPage: 40,
+          currentPage: page};index as i">
+          <td align="center" *ngFor="let item of row;index as j">
+            <span *ngIf="i > 0 && j == 0">
+              {{ item | date : 'yyyy-MM-dd'}}
+            </span>
+            <span *ngIf="!(i > 0 && j == 0)">
+              {{item}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+   
+  </div>
+  <pagination-controls   (pageChange)="page = $event"></pagination-controls>
+</section>
